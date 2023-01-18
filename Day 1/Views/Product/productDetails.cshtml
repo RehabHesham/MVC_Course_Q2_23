@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string txt = "Welcome";
+}
+
+<html>
+<head>
+    <title>product</title>
+</head>
+<body>
+    <h1>@txt</h1>
+    <h1>The product data:</h1>
+    <ul>
+        <li>price: @Model.price</li>
+        <li>id: @Model.Id</li>
+        <li>name: @Model.Name</li>
+        <li>description: @Model.Description</li>
+    </ul>
+</body>
+</html>

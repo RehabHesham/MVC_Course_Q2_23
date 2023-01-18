@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<html>
+    <head>
+        <title>Add product</title>
+    </head>
+    <body>
+        <form action="/product/adddata">
+              <label for="Id">Id</label>
+              <input id="Id" name="Id" type="number" />
+
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" />
+
+                <label for="description">Description</label>
+        <input id="description" name="description" type="text" />
+
+                <label for="Price">Price</label>
+                <input id="Price" name="Price" type="number" />
+
+                <input type="submit" value="Add" />
+        </form>
+    </body>
+</html>

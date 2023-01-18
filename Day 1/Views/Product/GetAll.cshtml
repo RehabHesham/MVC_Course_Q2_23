@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<html>
+<head>
+    <title>product</title>
+</head>
+<body>
+
+
+    <a href="/product/addform">Add Product</a>
+    @foreach(var item in Model)
+    {
+ <hr />
+        <h1>The product data:</h1>
+        <ul>
+            <li>price: @item.price</li>
+            <li>id: @item.Id</li>
+            <li>name: @item.Name</li>
+            <li>description: @item.Description</li>
+        </ul>
+    }
+</body>
+</html>
