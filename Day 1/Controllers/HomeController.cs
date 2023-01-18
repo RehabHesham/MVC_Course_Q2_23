@@ -13,7 +13,7 @@ namespace Day_1.Controllers
 
         public ViewResult Welcome()
         {
-            return View();
+            return View("Hello");
         }
 
         public IActionResult Vary(int id)
