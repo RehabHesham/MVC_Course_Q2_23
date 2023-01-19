@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int index = 1;
+}
+@model List<Course>
+
+    <a href="/Course/Add">Add Course</a>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Details</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var course in Model)
+        {
+            <tr>
+                <td>@(index++)</td>
+                <td>@course.Name</td>
+                <td><a href="/course/GetById/@course.Id">Details</a></td>
+                <td><a href="/course/Edit/@course.Id">Edit</a></td>
+                <td><a href="/course/delete/@course.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
