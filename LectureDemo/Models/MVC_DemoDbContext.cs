@@ -16,7 +16,14 @@ namespace LectureDemo.Models
             base.OnConfiguring(optionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StudentCourse>().HasKey(s => new {s.StdId,s.CrsId});
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
     }
 }

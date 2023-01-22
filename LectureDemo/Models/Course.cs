@@ -15,5 +15,6 @@ namespace LectureDemo.Models
 
         //Navigation property
         public Instructor ins_course { get; set; }
+        public List<StudentCourse> studentCrs { get; set; }
     }
 }

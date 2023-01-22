@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    int i = 1;
+}
+
+<h1>Index</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach(var instructor in (List<Instructor>)ViewData["ins"])*@
+        @foreach (var instructor in ViewBag.ins)
+
+        {
+            <td>@(i++)</td>
+            <td>@instructor.Name</td>
+        }
+    </tbody>
+</table>

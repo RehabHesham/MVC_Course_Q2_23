@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model StudentCourseVM
+
+<form action="/stdcrs/addToDb">
+    <label>Student</label>
+    <select id="StdId" name="StdId" >
+        <option>Choose one</option>
+        @foreach(var student in Model.students)
+        {
+            <option value="@student.Id">@student.Name</option>
+        }
+    </select>
+
+    <label>Course</label>
+    <select id="CrsId" name="CrsId">
+        <option>Choose one</option>
+        @foreach (var course in Model.courses)
+        {
+            <option value="@course.Id">@course.Name</option>
+        }
+    </select>
+    <input type="submit" value="Add" />
+</form>

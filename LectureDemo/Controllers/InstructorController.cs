@@ -11,6 +11,20 @@ namespace LectureDemo.Controllers
         {
             dbContext = new MVC_DemoDbContext();
         }
+        
+        public IActionResult Index()
+        {
+            List<Instructor> ins = dbContext.Instructors.ToList();
+            //ViewData["ins"] = ins;
+            ViewBag.ins = ins;
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
+
         public IActionResult InsCourses(int id)
         {
             Instructor ins = dbContext.Instructors.Include(i => i.Courses).SingleOrDefault(i=>i.Id == id);
