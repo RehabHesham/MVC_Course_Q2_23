@@ -45,16 +45,25 @@
         </div>
     </nav>
 
+    <div class="row">
+        <div class="col-3">
     <aside>
+        <h2>ReqNum = @Context.Request.Cookies["ReqNum"]</h2>
         <ul>
-            <li>Course list</li>
-            <li>New Course</li>
+           @RenderSection("aside",false)
         </ul>
     </aside>
+            
+        </div>
+        <div class="col-9">
+
     <div class="container">
         @RenderBody()
     </div>
+        </div>
+    </div>
     <footer>Welcome to our website</footer>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("scripts",false)
 </body>
 </html>

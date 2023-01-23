@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+  @*<form action="/ModelBinding/primitive/3?name=ola&age=20&id=5" method="post">*@
+@*<form action="/ModelBinding/UserDefined" method="post">*@
+<form action="/ModelBinding/nested" method="post">
+
+    <label>id</label>
+    <input name="id" type="number" />
+    <label>name</label>
+    <input name="name" type="text"/>
+    <label>age</label>
+    <input name="age" type="number"/>
+
+    <label>category name</label>
+    <input name="category.name" type="text" />
+
+    <input type="submit" value="Save" />
+</form>
