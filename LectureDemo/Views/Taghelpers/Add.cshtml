@@ -1,0 +1,26 @@
+﻿@model Course
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<form asp-action="Add" asp-controller="taghelpers" method="post">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control"/>
+
+    <label asp-for="Description"></label>
+    <input asp-for="Description" class="form-control" />
+
+    <label asp-for="hours"></label>
+    <input asp-for="hours" class="form-control" />
+
+    <label asp-for="InstructorId"></label>
+    <select asp-for="InstructorId" asp-items="ViewBag.Instructors" class="form-control">
+        <option value="">Choose One</option>
+    </select>
+
+    <input type="submit" value="Add" />
+</form>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LectureDemo.Models
 {
@@ -11,6 +12,7 @@ namespace LectureDemo.Models
 
         // Foreign key
         [ForeignKey("ins_course")]
+        [Display(Name ="Instructor")]
         public int? InstructorId { get; set; }
 
         //Navigation property

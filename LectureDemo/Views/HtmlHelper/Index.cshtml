@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int i = 1;
+}
+
+@Html.ActionLink("Add Instructor","Add","htmlhelper")
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@(i++)</td>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>@item.Salary</td>
+                <td>@Html.ActionLink("Edit","Edit","htmlhelper",new {Id = item.Id})</td>
+            </tr>
+        }
+    </tbody>
+</table>

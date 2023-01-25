@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Add Instructor</h1>
+
+@using(Html.BeginForm("AddDb","htmlhelper",FormMethod.Post)){
+
+    @Html.Label("name")
+    @Html.TextBox("name")
+
+    @Html.Label("Age")
+    @Html.Editor("Age")
+
+    @Html.Label("Salary")
+    @Html.Editor("Salary")
+
+    @Html.Label("courses")
+    @Html.DropDownList("courses",ViewBag.courses as SelectList,"choose one")
+
+    <input type="submit" value="Add"/>
+}
