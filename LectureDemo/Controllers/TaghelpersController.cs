@@ -16,22 +16,23 @@ namespace LectureDemo.Controllers
             List<Course> courses= context.Courses.ToList();
             return View(courses);
         }
-
         [HttpGet]
-        public IActionResult Add(int? id)
+        public IActionResult Add()
         {
             List<Instructor> instructors= context.Instructors.ToList();
             ViewBag.Instructors = new SelectList(instructors,"Id","Name");
-            if(id == null)
-            {
-                return View("Error");
-            }
-            Course course = context.Courses.SingleOrDefault(c=>c.Id == id);
-            return View(course);
+            //if(id == null)
+            //{
+            //    return View("Error");
+            //}
+            //Course course = context.Courses.SingleOrDefault(c=>c.Id == id);
+            return View();
         }
         [HttpPost]
         public IActionResult Add(Course course)
         {
+
+        
             context.Courses.Add(course);
             context.SaveChanges();
             return RedirectToAction(nameof(Index));
