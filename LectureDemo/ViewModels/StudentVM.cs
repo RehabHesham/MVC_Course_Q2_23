@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LectureDemo.CustomAttribute;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace LectureDemo.ViewModels
@@ -10,6 +11,7 @@ namespace LectureDemo.ViewModels
         [Required(ErrorMessage ="Name is required")]
         [MinLength(3,ErrorMessage ="Name must be more or equal 3 letters")]
         [Remote("validateName", "CustomValidation",AdditionalFields ="Age",ErrorMessage ="lala is not a valid name")]
+        [Unique]
         public string Name { get; set; }
         [Display(Name = "Student Age")]
         [Required]
