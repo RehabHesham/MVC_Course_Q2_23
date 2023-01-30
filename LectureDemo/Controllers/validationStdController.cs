@@ -2,6 +2,7 @@
 using LectureDemo.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace LectureDemo.Controllers
@@ -18,6 +19,14 @@ namespace LectureDemo.Controllers
         {
             List<Student> students = context.Students.ToList();
             return View(students);
+        }
+
+        public IActionResult Details(int? id)
+        {
+            if(id == null) return View("Error");
+            Student? student = context.Students.Include(s => s.StudentCourses).ThenInclude(sc => sc.crs).SingleOrDefault(s => s.Id == id);
+            if(student == null) return View("Error");
+            return View(student);
         }
 
         [HttpGet]
@@ -53,6 +62,10 @@ namespace LectureDemo.Controllers
             return View();
         }
 
-
+        [NonAction]
+        public IActionResult result()
+        {
+            return Json(context);
+        }
     }
 }

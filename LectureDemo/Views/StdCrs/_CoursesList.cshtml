@@ -1,0 +1,13 @@
+﻿@model StudentCourse
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+    <label asp-for="CrsId"></label>
+    <select asp-for="CrsId" asp-items="ViewBag.Courses" class="form-control"></select>
+
+    
+    <partial name="_grade" model="Model"></partial>
+

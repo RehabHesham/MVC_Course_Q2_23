@@ -1,6 +1,7 @@
 ﻿using LectureDemo.Models;
 using LectureDemo.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace LectureDemo.Controllers
@@ -51,6 +52,55 @@ namespace LectureDemo.Controllers
              return RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(AddStudentCourse));
+        }
+
+        [HttpGet]
+        public IActionResult EditStdGrade()
+        {
+            List<Student> students = db.Students.ToList();
+            ViewBag.Students = new SelectList(students,"Id","Name");
+            return View();
+        }
+
+        public IActionResult EditStdGrade_std(int id)
+        {
+            //var courses = db.Courses.Include(c => c.studentCrs)
+            //    .SelectMany(c => c.studentCrs, (crs, std_crs) => new {crs.Id, std_crs.StdId, crs.Name})
+            //    .Where(c=>c.StdId == id).ToList();
+
+            List<Course> courses = db.StudentCourses.Include(sc => sc.crs)
+                .Where(sc => sc.StdId == id).Select(sc => sc.crs).ToList();
+
+            ViewBag.courses = new SelectList(courses, "Id", "Name");
+            if (courses.Count > 0)
+            {
+                StudentCourse studentCourse = new StudentCourse()
+                {
+                    grade = db.StudentCourses.SingleOrDefault(sc => (sc.StdId == id) && (sc.CrsId == courses[0].Id)).grade,
+                };
+                return PartialView("_CoursesList", studentCourse);
+            }
+            return PartialView("_CoursesList");
+        }
+
+        public IActionResult EditStdGrade_stdCrs(int id,int crsId)
+        {
+            StudentCourse? studentCourse = db.StudentCourses.SingleOrDefault(sc => sc.StdId == id && sc.CrsId == crsId);
+            if (studentCourse == null) return View("Error");
+            return PartialView("_grade",studentCourse);
+        }
+        [HttpPost]
+        public IActionResult EditStdGrade(StudentCourse studentCourse)
+        {
+            if (ModelState.IsValid)
+            {
+            db.StudentCourses.Update(studentCourse);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+
+            }
+            return View();
         }
     }
 }

@@ -7,7 +7,7 @@
 }
 
 <a asp-action="Add" asp-controller="validationStd">Add Student</a>
-<table>
+@*<table>
     <thead>
         <tr>
             <th>#</th>
@@ -23,4 +23,18 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@
+
+
+<h1>Students</h1>
+<hr />
+<a asp-action="EditStdGrade" asp-controller="StdCrs">Edit students Grades</a>
+<div class="container">
+    <div class="row">
+@foreach(var std in Model){
+    <div class="col-3">
+    <partial name="_stdCard" model="std"></partial>
+    </div>
+        }
+    </div>
+</div>
