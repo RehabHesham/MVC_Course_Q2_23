@@ -15,11 +15,14 @@ namespace LectureDemo.CustomAttribute
             string? name = value as string;
             if (name == null) return ValidationResult.Success;
 
-            Student? std = context.Students.FirstOrDefault(s => s.Name == name);
-            if (std == null) return ValidationResult.Success;
+            //Student? std = context.Students.FirstOrDefault(s => s.Name == name);
+            //if (std == null) return ValidationResult.Success;
+            //return new ValidationResult("name is not valid");
 
+            bool invalid = context.Students.Any(s => s.Name == name);
+            if(invalid) return new ValidationResult("name is not valid");
 
-            return new ValidationResult("name is not valid");
+            return ValidationResult.Success;
         }
     }
 }
