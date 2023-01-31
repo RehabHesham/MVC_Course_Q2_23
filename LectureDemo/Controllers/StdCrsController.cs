@@ -72,15 +72,12 @@ namespace LectureDemo.Controllers
                 .Where(sc => sc.StdId == id).Select(sc => sc.crs).ToList();
 
             ViewBag.courses = new SelectList(courses, "Id", "Name");
-            if (courses.Count > 0)
+
+            StudentCourse studentCourse = new StudentCourse()
             {
-                StudentCourse studentCourse = new StudentCourse()
-                {
-                    grade = db.StudentCourses.SingleOrDefault(sc => (sc.StdId == id) && (sc.CrsId == courses[0].Id)).grade,
-                };
-                return PartialView("_CoursesList", studentCourse);
-            }
-            return PartialView("_CoursesList");
+                grade = courses.Count > 0?db.StudentCourses.SingleOrDefault(sc => (sc.StdId == id) && (sc.CrsId == courses[0].Id)).grade : 0,
+            };
+            return PartialView("_CoursesList", studentCourse);
         }
 
         public IActionResult EditStdGrade_stdCrs(int id,int crsId)
@@ -92,15 +89,10 @@ namespace LectureDemo.Controllers
         [HttpPost]
         public IActionResult EditStdGrade(StudentCourse studentCourse)
         {
-            if (ModelState.IsValid)
-            {
             db.StudentCourses.Update(studentCourse);
             db.SaveChanges();
 
             return RedirectToAction("Index");
-
-            }
-            return View();
         }
     }
 }

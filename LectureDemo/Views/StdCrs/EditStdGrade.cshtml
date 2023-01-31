@@ -17,14 +17,7 @@
         </select>
     </div>
     <div class="form-group" id="coursesArea">
-        <label asp-for="CrsId"></label>
-        <select asp-for="CrsId" class="form-control" >
-            <option>Choose course</option>
-        </select>
-    <div class="form-group" id="gradeArea">
-        <label asp-for="grade"></label>
-        <input asp-for="grade" class="form-control" />
-    </div>
+        <partial name="_CoursesList" model="Model"></partial>
     </div>
 
     <input type="submit" value="Edit" />

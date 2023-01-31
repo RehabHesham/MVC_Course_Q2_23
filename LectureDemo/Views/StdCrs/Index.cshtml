@@ -13,6 +13,7 @@
             <th>#</th>
             <th>student Name</th>
             <th>course Name</th>
+            <th>Grade</th>
         </tr>
     </thead>
         @foreach (var studentCourse in Model)
@@ -22,6 +23,7 @@
         <td>@(i++)</td>
         <td>@studentCourse.std.Name</td>
         <td>@studentCourse.crs.Name</td>
+        <td>@studentCourse.grade</td>
         </tr>
         }
     </tbody>

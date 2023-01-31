@@ -1,0 +1,29 @@
+﻿@inject IScopedService scoped
+@inject ISingletonService singleton
+@inject ItransiantService transiant
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<h1>Service Life time</h1>
+<hr />
+
+<h3>Singleton</h3>
+<p>Form controller: @ViewBag.singleton</p>
+<p>From View: @singleton.Message</p>
+
+
+<hr />
+
+<h3>Scoped</h3>
+<p>Form controller: @ViewBag.scoped</p>
+<p>From View: @scoped.Message</p>
+
+<hr />
+
+<h3>Transiant</h3>
+<p>Form controller: @ViewBag.transiant</p>
+<p>From View: @transiant.Message</p>
