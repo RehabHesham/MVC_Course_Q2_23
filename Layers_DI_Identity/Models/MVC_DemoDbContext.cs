@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Layers_DI_Identity.ViewModels;
 
 namespace Layers_DI_Identity.Models
 {
-    public class MVC_DemoDbContext : DbContext
+    public class MVC_DemoDbContext : IdentityDbContext<ApplicationUser>
     {
+        
         public MVC_DemoDbContext()
         {
 
@@ -12,7 +16,7 @@ namespace Layers_DI_Identity.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Mvc_Demo;Integrated Security=True;TrustServerCertificate = True;");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Identity;Integrated Security=True;TrustServerCertificate = True;");
             base.OnConfiguring(optionsBuilder);
         }
 
@@ -25,5 +29,8 @@ namespace Layers_DI_Identity.Models
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
+        public DbSet<Product> products { get; set; }
+        public DbSet<Layers_DI_Identity.ViewModels.RegistrationVM> RegistrationVM { get; set; } = default!;
+        public DbSet<Layers_DI_Identity.ViewModels.LoginVM> LoginVM { get; set; } = default!;
     }
 }

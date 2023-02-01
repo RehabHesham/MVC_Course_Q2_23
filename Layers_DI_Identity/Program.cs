@@ -2,6 +2,7 @@ using Layers_DI_Identity.Models;
 using Layers_DI_Identity.Reposiotries;
 using Layers_DI_Identity.ServiceLifeTime;
 using Layers_DI_Identity.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,18 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MVC_DemoDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("myCS"));
+});
+
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>()
+    .AddEntityFrameworkStores<MVC_DemoDbContext>();
+builder.Services.Configure<IdentityOptions>(opts =>
+{
+    opts.Password.RequireNonAlphanumeric = false;
+    opts.Password.RequireDigit = false;
+    opts.Password.RequireLowercase = false;
+    opts.Password.RequireUppercase = false;
+    opts.Password.RequiredLength = 6;
+    opts.User.RequireUniqueEmail = true;
 });
 
 builder.Services.AddScoped<IStudentRepo, StudentRepo>();
@@ -33,6 +46,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

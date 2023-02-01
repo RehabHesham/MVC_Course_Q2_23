@@ -1,5 +1,6 @@
 ﻿using Layers_DI_Identity.Services;
 using Layers_DI_Identity.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Layers_DI_Identity.Controllers
@@ -12,6 +13,7 @@ namespace Layers_DI_Identity.Controllers
         {
             this.studentService = studentService;
         }
+        [Authorize(Roles = "Admin,Instructor")]
         public IActionResult Index()
         {
             List<studentVM> studentVMs = studentService.GetAll();
